@@ -1,10 +1,40 @@
+import { useState } from "react";
+
 function Form() {
+  const [quantity, setQuantity] = useState(1);
+  const [item, setItem] = useState("");
+
+  function handleOption(event) {
+    setQuantity(event.target.value);
+  }
+
+  function onSubmit(event) {
+    event.preventDefault();
+    const finalitem = {
+      quantity,
+      item,
+    };
+    setItem("");
+    setQuantity(1);
+    console.log(finalitem);
+  }
   return (
     <form className="form">
       <h1 className="form-title">What do you need for your 😍 trip?</h1>
-      <select name="" id="" className="select"></select>
-      <input type="text" className="input" />
-      <button className="btn">Add</button>
+      <select value={quantity} className="select" onChange={handleOption}>
+        {Array.from({ length: 10 }, (_, i) => (
+          <option key={i}>{i + 1}</option>
+        ))}
+      </select>
+      <input
+        value={item}
+        onChange={(event) => setItem(event.target.value)}
+        type="text"
+        className="input"
+      />
+      <button className="btn" onClick={onSubmit}>
+        Add
+      </button>
     </form>
   );
 }
