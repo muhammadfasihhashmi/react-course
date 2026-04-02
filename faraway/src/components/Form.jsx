@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Form() {
+function Form({ setPackingList }) {
   const [quantity, setQuantity] = useState(1);
   const [item, setItem] = useState("");
 
@@ -14,9 +14,9 @@ function Form() {
       quantity,
       item,
     };
+    setPackingList((prev) => [...prev, finalitem]);
     setItem("");
     setQuantity(1);
-    console.log(finalitem);
   }
   return (
     <form className="form">

@@ -1,6 +1,6 @@
-import React from "react";
+function PackingList({ packingList }) {
+  console.log(packingList);
 
-function PackingList() {
   return <div>packinglist</div>;
 }
 
