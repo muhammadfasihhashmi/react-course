@@ -11,8 +11,10 @@ function Form({ setPackingList }) {
   function onSubmit(event) {
     event.preventDefault();
     const finalitem = {
+      id: Date.now(),
       quantity,
       item,
+      isPacked: false,
     };
     setPackingList((prev) => [...prev, finalitem]);
     setItem("");
