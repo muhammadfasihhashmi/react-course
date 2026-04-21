@@ -7,6 +7,9 @@ function Form({ setPackingList }) {
   function handleOption(event) {
     setQuantity(event.target.value);
   }
+  function handleItem(event) {
+    setItem(event.target.value);
+  }
 
   function onSubmit(event) {
     event.preventDefault();
@@ -28,12 +31,7 @@ function Form({ setPackingList }) {
           <option key={i}>{i + 1}</option>
         ))}
       </select>
-      <input
-        value={item}
-        onChange={(event) => setItem(event.target.value)}
-        type="text"
-        className="input"
-      />
+      <input value={item} onChange={handleItem} type="text" className="input" />
       <button className="btn" onClick={onSubmit}>
         Add
       </button>

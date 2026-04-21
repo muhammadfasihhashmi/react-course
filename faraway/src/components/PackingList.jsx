@@ -6,10 +6,10 @@ function PackingList({ packingList, handleDelete, handlePackedStatus }) {
   return (
     <div className="list-container">
       <ul className="list">
-        {packingList.map((item, ind) => (
+        {packingList.map((list, ind) => (
           <ListItem
             key={ind}
-            item={item}
+            list={list}
             handleDelete={handleDelete}
             handlePackedStatus={handlePackedStatus}
           />

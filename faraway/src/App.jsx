@@ -6,7 +6,6 @@ import Stats from "./components/Stats";
 
 function App() {
   const [packingList, setPackingList] = useState([]);
-  console.log(packingList);
 
   function handleDelete(id) {
     setPackingList(packingList.filter((item) => item.id !== id));
