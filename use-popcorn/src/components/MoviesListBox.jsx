@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-function MoviesListBox() {
+function MoviesListBox({ movies }) {
   const [isOpen1, setIsOpen1] = useState(true);
-  const [movies, setMovies] = useState([]);
 
   return (
     <div className="box">

@@ -2,8 +2,7 @@ import { useState } from "react";
 import WatchedSummary from "./WatchedSummary";
 import WatchedMoviesList from "./WatchedMoviesList";
 
-function WatchedMoviesBox() {
-  const [watched, setWatched] = useState([]);
+function WatchedMoviesBox({ watched }) {
   const [isOpen2, setIsOpen2] = useState(true);
 
   return (
