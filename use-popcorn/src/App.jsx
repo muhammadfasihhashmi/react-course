@@ -56,6 +56,7 @@ function App() {
   const [watched, setWatched] = useState(tempWatchedData);
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isMovieSelected, setIsMoviesSelected] = useState(null);
 
   useEffect(() => {
     async function getMovies() {
@@ -82,11 +83,15 @@ function App() {
 
   return (
     <>
-      <NavBar setQuery={setQuery} query={query} />
+      <NavBar setQuery={setQuery} query={query} movies={movies} />
       {/* MainSection */}
       <main className="main">
-        <MoviesListBox movies={movies} isLoading={isLoading} />
-        <WatchedMoviesBox watched={watched} />
+        <MoviesListBox
+          movies={movies}
+          isLoading={isLoading}
+          setIsMoviesSelected={setIsMoviesSelected}
+        />
+        <WatchedMoviesBox watched={watched} isMovieSelected={isMovieSelected} />
       </main>
     </>
   );

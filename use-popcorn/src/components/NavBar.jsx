@@ -1,7 +1,7 @@
 import React from "react";
 import SearchMoviesBar from "./SearchMoviesBar";
 
-function NavBar({ setQuery, query }) {
+function NavBar({ setQuery, query, movies }) {
   return (
     <nav className="nav-bar">
       <div className="logo">
@@ -10,7 +10,7 @@ function NavBar({ setQuery, query }) {
       </div>
       <SearchMoviesBar setQuery={setQuery} query={query} />
       <p className="num-results">
-        Found <strong>10</strong> results
+        Found <strong>{movies?.length ?? 0}</strong> results
       </p>
     </nav>
   );

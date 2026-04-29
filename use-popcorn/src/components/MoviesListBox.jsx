@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-function MoviesListBox({ movies, isLoading }) {
+function MoviesListBox({ movies, isLoading, setIsMoviesSelected }) {
   const [isOpen1, setIsOpen1] = useState(true);
+  console.log(movies);
 
   return (
     <div className="box">
@@ -17,7 +18,10 @@ function MoviesListBox({ movies, isLoading }) {
         ) : (
           <ul className="list">
             {movies?.map((movie) => (
-              <li key={movie.imdbID}>
+              <li
+                key={movie.imdbID}
+                onClick={() => setIsMoviesSelected(movie.imdbID)}
+              >
                 <img src={movie.Poster} alt={`${movie.Title} poster`} />
                 <h3>{movie.Title}</h3>
                 <div>
