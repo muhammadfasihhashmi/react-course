@@ -91,7 +91,11 @@ function App() {
           isLoading={isLoading}
           setIsMoviesSelected={setIsMoviesSelected}
         />
-        <WatchedMoviesBox watched={watched} isMovieSelected={isMovieSelected} />
+        <WatchedMoviesBox
+          watched={watched}
+          isMovieSelected={isMovieSelected}
+          setIsMoviesSelected={setIsMoviesSelected}
+        />
       </main>
     </>
   );
