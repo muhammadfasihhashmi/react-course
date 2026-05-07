@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Start from "./Start";
 
-function RatingStars() {
+function RatingStars({ permanentStars, setPermanentStars }) {
   const [hoveringStars, setHoveringStars] = useState(0);
-  const [permanentStars, setPermanentStars] = useState(0);
 
   console.log("hoverin", hoveringStars);
   console.log("perma", permanentStars);
@@ -15,7 +14,7 @@ function RatingStars() {
     setHoveringStars(index);
   }
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+    <div style={{ display: "flex", alignItems: "center" }}>
       {Array.from({ length: 10 }, (_, index) => (
         <Start
           key={index}
@@ -27,6 +26,9 @@ function RatingStars() {
           }
         />
       ))}
+      <p style={{ marginLeft: "5px", fontSize: "15px", color: "#fcc419" }}>
+        {hoveringStars ? hoveringStars : permanentStars}
+      </p>
     </div>
   );
 }

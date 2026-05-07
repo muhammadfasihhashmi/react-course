@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import RatingStars from "./RatingStars";
 const apiKey = import.meta.env.VITE_API_KEY;
 
-function MovieDetails({ isMovieSelected, setIsMoviesSelected }) {
+function MovieDetails({ isMovieSelected, setIsMoviesSelected, setWatched }) {
   const [movieDetails, setMovieDetail] = useState({});
   const [isLoading, setIsloading] = useState(false);
+  const [permanentStars, setPermanentStars] = useState(null);
 
   const {
+    imdbID,
     Poster,
     Title,
     Released,
@@ -36,6 +39,19 @@ function MovieDetails({ isMovieSelected, setIsMoviesSelected }) {
     }
     getMovieDetails();
   }, [isMovieSelected]);
+
+  function handleAdd() {
+    const movie = {
+      imdbID,
+      Poster,
+      Title,
+      imdbRating: Number(imdbRating),
+      userRating: permanentStars,
+      Runtime,
+    };
+    setWatched((prev) => [...prev, movie]);
+    setIsMoviesSelected(null);
+  }
 
   return (
     <>
@@ -84,6 +100,17 @@ function MovieDetails({ isMovieSelected, setIsMoviesSelected }) {
               </>
             )}
           </div> */}
+              <div className="rating">
+                <RatingStars
+                  permanentStars={permanentStars}
+                  setPermanentStars={setPermanentStars}
+                />
+                {permanentStars && (
+                  <button className="btn-add" onClick={handleAdd}>
+                    + Add to list
+                  </button>
+                )}
+              </div>
               <p>
                 <em>{Plot}</em>
               </p>

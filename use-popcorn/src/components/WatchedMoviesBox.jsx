@@ -3,7 +3,12 @@ import WatchedSummary from "./WatchedSummary";
 import WatchedMoviesList from "./WatchedMoviesList";
 import MovieDetails from "./MovieDetails";
 
-function WatchedMoviesBox({ watched, isMovieSelected, setIsMoviesSelected }) {
+function WatchedMoviesBox({
+  watched,
+  setWatched,
+  isMovieSelected,
+  setIsMoviesSelected,
+}) {
   const [isOpen2, setIsOpen2] = useState(true);
 
   return (
@@ -20,6 +25,7 @@ function WatchedMoviesBox({ watched, isMovieSelected, setIsMoviesSelected }) {
             <MovieDetails
               isMovieSelected={isMovieSelected}
               setIsMoviesSelected={setIsMoviesSelected}
+              setWatched={setWatched}
             />
           ) : (
             <>
