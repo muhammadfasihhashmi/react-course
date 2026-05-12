@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import RatingStars from "./RatingStars";
 const apiKey = import.meta.env.VITE_API_KEY;
 
-function MovieDetails({ isMovieSelected, setIsMoviesSelected, setWatched }) {
+function MovieDetails({
+  isMovieSelected,
+  setIsMoviesSelected,
+  setWatched,
+  watched,
+}) {
   const [movieDetails, setMovieDetail] = useState({});
   const [isLoading, setIsloading] = useState(false);
   const [permanentStars, setPermanentStars] = useState(null);
@@ -40,6 +45,8 @@ function MovieDetails({ isMovieSelected, setIsMoviesSelected, setWatched }) {
     getMovieDetails();
   }, [isMovieSelected]);
 
+  const isMatched = watched.some((movie) => movie.imdbID === isMovieSelected);
+
   function handleAdd() {
     const movie = {
       imdbID,
@@ -47,7 +54,7 @@ function MovieDetails({ isMovieSelected, setIsMoviesSelected, setWatched }) {
       Title,
       imdbRating: Number(imdbRating),
       userRating: permanentStars,
-      Runtime,
+      runtime: Number(Runtime.split(" ")[0]),
     };
     setWatched((prev) => [...prev, movie]);
     setIsMoviesSelected(null);
@@ -81,34 +88,21 @@ function MovieDetails({ isMovieSelected, setIsMoviesSelected, setWatched }) {
               </div>
             </header>
             <section>
-              {/* <div className="rating">
-            {isMatched ? (
-              `Your given rating is ${matchedMovie.userRating} ⭐`
-            ) : (
-              <>
-                <RatingStars
-                  size={25}
-                  PermanentStars={PermanentStars}
-                  setPermanentStars={setPermanentStars}
-                  timesUserRated={timesUserRated}
-                />
-                {PermanentStars && (
-                  <button className="btn-add" onClick={handleAdd}>
-                    + Add to list
-                  </button>
-                )}
-              </>
-            )}
-          </div> */}
               <div className="rating">
-                <RatingStars
-                  permanentStars={permanentStars}
-                  setPermanentStars={setPermanentStars}
-                />
-                {permanentStars && (
-                  <button className="btn-add" onClick={handleAdd}>
-                    + Add to list
-                  </button>
+                {isMatched ? (
+                  <p>Allready added</p>
+                ) : (
+                  <>
+                    <RatingStars
+                      permanentStars={permanentStars}
+                      setPermanentStars={setPermanentStars}
+                    />
+                    {permanentStars && (
+                      <button className="btn-add" onClick={handleAdd}>
+                        + Add to list
+                      </button>
+                    )}
+                  </>
                 )}
               </div>
               <p>

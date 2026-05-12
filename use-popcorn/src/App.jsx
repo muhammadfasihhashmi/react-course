@@ -7,7 +7,11 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(
+    localStorage.getItem("watchedMovies")
+      ? JSON.parse(localStorage.getItem("watchedMovies"))
+      : [],
+  );
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isMovieSelected, setIsMoviesSelected] = useState(null);
@@ -34,6 +38,10 @@ function App() {
     }
     getMovies();
   }, [query]);
+
+  useEffect(() => {
+    localStorage.setItem("watchedMovies", JSON.stringify(watched));
+  }, [watched]);
 
   return (
     <>

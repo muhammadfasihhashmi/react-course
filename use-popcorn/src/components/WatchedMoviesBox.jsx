@@ -26,6 +26,7 @@ function WatchedMoviesBox({
               isMovieSelected={isMovieSelected}
               setIsMoviesSelected={setIsMoviesSelected}
               setWatched={setWatched}
+              watched={watched}
             />
           ) : (
             <>
